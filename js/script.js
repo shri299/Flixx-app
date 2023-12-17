@@ -8,45 +8,45 @@ console.log(global);
 
 //highlight active link
 
-// function highlightActiveLink() {
-//     const links = document.querySelectorAll('.nav-link');
-//     links.forEach((link) => {
-//         if (link.getAttribute('href') === global.currentPage) {
-//             link.classList.add('active')
-//         }
-//     })
-// }
+function highlightActiveLink() {
+    const links = document.querySelectorAll('.nav-link');
+    links.forEach((link) => {
+        if (link.getAttribute('href') === global.currentPage) {
+            link.classList.add('active')
+        }
+    })
+}
 
-// //router
+//router
 
-// function init(){
-//     switch (global.currentPage) {
-//         case '/Flixx-app/':
-//         case '/Flixx-app/index.html':
-//             console.log("home");
-//             break;
+function init(){
+    switch (global.currentPage) {
+        case '/':
+        case '/index.html':
+            console.log("home");
+            break;
         
-//         case '/Flixx-app/shows.html':
-//             console.log("shows page");
-//             break;
+        case '/shows.html':
+            console.log("shows page");
+            break;
 
-//         case '/Flixx-app/movie-details.html':
-//             console.log("movies page");
-//             break;
+        case '/movie-details.html':
+            console.log("movies page");
+            break;
         
-//         case '/Flixx-app/tv-details.html':
-//             console.log("tv page");
-//             break;
+        case '/tv-details.html':
+            console.log("tv page");
+            break;
 
-//         case '/Flixx-app/search.html':
-//             console.log("search page");
-//             break;
+        case '/search.html':
+            console.log("search page");
+            break;
 
-//         default:
-//             console.log("checking");
-//             break;
-//     }
-//     highlightActiveLink();
-// }
+        default:
+            console.log("checking");
+            break;
+    }
+    highlightActiveLink();
+}
 
-// document.addEventListener('DOMContentLoaded',init);
+document.addEventListener('DOMContentLoaded',init);
