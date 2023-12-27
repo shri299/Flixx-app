@@ -40,6 +40,47 @@ async function displayPopularMovies(){
     })
 }
 
+function showSpinner() {
+    document.querySelector('.spinner').classList.add('show');
+}
+
+function hideSpinner() {
+    document.querySelector('.spinner').classList.remove('show');
+}
+
+async function displayPopularShows() {
+    const {results} = await fetchdata('tv/popular');
+
+    results.forEach((popularMovie)=>{
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `
+        <a href='tv-details.html?id=${popularMovie.id}'>
+        ${
+            popularMovie.poster_path ?
+            `<img
+            src='https://image.tmdb.org/t/p/w500${popularMovie.poster_path}'
+            class='card-img-top'
+            alt=${popularMovie.name}
+        />` : 
+        `<img
+        src='../images/no-image.jpg'
+        class='card-img-top'
+        alt=${popularMovie.name}
+    />`
+        }
+        </a>
+        <div class='card-body'>
+            <h5 class='card-title'>${popularMovie.name}</h5>
+            <p class="card-text">
+              <small class="text-muted">Release: ${popularMovie.first_air_date}</small>
+            </p>
+        </div>`;
+
+        document.querySelector('#popular-shows').appendChild(div);
+    })
+}
+
 
 //fetch data from API
 
@@ -47,8 +88,13 @@ async function fetchdata(endpoint) {
     const API_KEY = '97d58ba87690e52854f1362c2a996e0c';
     const API_URL = 'https://api.themoviedb.org/3/';
 
+    showSpinner();
+
     const resObj = await fetch(`${API_URL}/${endpoint}?api_key=${API_KEY}&language=en-US`);
     const data = await resObj.json();
+
+    hideSpinner();
+
     return data;
 }
 
@@ -74,7 +120,8 @@ function init(){
             break;
         
         case '/shows.html':
-            console.log("shows page");
+            //console.log("shows page");
+            displayPopularShows();
             break;
 
         case '/movie-details.html':
